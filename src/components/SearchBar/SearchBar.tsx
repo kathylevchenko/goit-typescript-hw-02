@@ -1,14 +1,19 @@
 import toast, { Toaster } from "react-hot-toast";
 
 import css from "./SearchBar.module.css";
+import { FormEvent } from "react";
 
-export default function SearchBar({ onSearch }) {
-  const handleSubmit = (evt) => {
+interface SearchBarProps{
+  onSearch:(searchImg: string)=>void;
+}
+
+const SearchBar:React.FC<SearchBarProps>=({ onSearch }) =>{
+  const handleSubmit = (evt:FormEvent<HTMLFormElement>) :void=> {
     evt.preventDefault();
-    const form = evt.target;
-    const searchImg = form.elements.searchImg.value;
+    const form = evt.currentTarget as HTMLFormElement;
+    const searchImg = form.elements.namedItem('searchImg') as HTMLInputElement;
 
-    if (searchImg.trim() === "") {
+    if (searchImg.value.trim() === "") {
       toast("Please enter text in the field", {
         style: {
           color: 'red',  
@@ -19,7 +24,7 @@ export default function SearchBar({ onSearch }) {
       return;
     }
 
-    onSearch(searchImg);
+    onSearch(searchImg.value);
     form.reset();
   };
 
@@ -42,3 +47,6 @@ export default function SearchBar({ onSearch }) {
     </header>
   );
 }
+
+
+export default SearchBar;

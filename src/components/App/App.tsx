@@ -6,18 +6,19 @@ import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
+import { ImageType } from "./App.types";
 
 
 
 export default function App() {
-  const [images, setImages] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [totalPage, setTotalPage] = useState(false);
- const [modalIsOpen, setModalIsOpen] = useState(false);
- const [selectedImageUrl, setSelectedImageUrl] = useState("");
+  const [images, setImages] = useState<ImageType[]>([]);
+  const [error, setError] = useState<boolean|null>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [totalPage, setTotalPage] = useState<boolean>(false);
+ const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+ const [selectedImageUrl, setSelectedImageUrl] = useState<string>("");
 
   
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function App() {
       return;
     }
   
-    async function fetchImages() {
+    async function fetchImages():Promise<void>{
       try {
         setLoading(true);
         setError(false);
@@ -45,23 +46,23 @@ export default function App() {
     fetchImages();
   }, [searchQuery, page]);
 
-  const handleSearch = async (searchImg) => {
+  const handleSearch = async (searchImg:string) => {
     setSearchQuery(searchImg);
     setPage(1);
     setImages([]);
   };
 
-  const handleLoadMore = async () => {
+  const handleLoadMore = async () : Promise<void>=> {
     setPage(page + 1);
    
   };
 
-    const openModal = (imageUrl) => {
+    const openModal = (imageUrl:string) => {
       setSelectedImageUrl(imageUrl);
       setModalIsOpen(true);
     };
 
-  const closeModal = () => {
+  const closeModal = () :void => {
       setSelectedImageUrl("");
       setModalIsOpen(false);
   };
