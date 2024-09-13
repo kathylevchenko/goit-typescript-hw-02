@@ -21,7 +21,7 @@ export default function App() {
  const [selectedImageUrl, setSelectedImageUrl] = useState<string>("");
 
   
-  useEffect(() => {
+  useEffect(() :void=> {
     if (searchQuery.trim() === "") {
       return;
     }
