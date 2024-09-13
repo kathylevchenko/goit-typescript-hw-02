@@ -1,0 +1,15 @@
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  }
+  
+  .card{
+      width: 320px;
+      height: 320px;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+  

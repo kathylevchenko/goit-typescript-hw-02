@@ -1,0 +1,17 @@
+.imgList{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.listItem {
+  object-fit: cover;
+  margin: 16px;
+}
+ul,li {
+  padding: 0;
+  list-style: none;
+}

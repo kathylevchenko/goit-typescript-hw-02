@@ -1,0 +1,16 @@
+.btnmore{
+    display: block;
+    margin: auto;
+    background-color: rgb(243, 242, 247);
+    border: black 1px solid;
+    border-radius: 8px;
+    padding: 12px 24px;
+    margin-bottom: 24px;
+    color: black;
+    transition: background-color 250ms linear;
+}
+
+.loadMoreBtn:hover,
+.loadMoreBtn:focus {
+  background-color: rgb(84, 65, 196);
+}
