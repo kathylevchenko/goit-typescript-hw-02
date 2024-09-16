@@ -9,7 +9,10 @@ import ImageModal from "../ImageModal/ImageModal";
 import { ImageType } from "./App.types";
 
 
-
+export interface Responce {
+  results:ImageType[];
+  total: number;
+}
 export default function App() {
   const [images, setImages] = useState<ImageType[]>([]);
   const [error, setError] = useState<boolean|null>(false);
@@ -30,12 +33,16 @@ export default function App() {
       try {
         setLoading(true);
         setError(false);
-        const { results, total } = await getImages(searchQuery, page);
+        const response = await getImages<Responce>(searchQuery, page);
+        const { results, total } = response;
+
        if(results.length === 0){
         setError(true);
        }else
         setImages((prevState) => [...prevState, ...results]);
-         setTotalPage(page < Math.ceil(total / 15));
+        //  
+        const totalPages = Math.ceil(total / 15);
+setTotalPage(page < totalPages);
       } catch (error) {
         setError(true);
       } finally {
